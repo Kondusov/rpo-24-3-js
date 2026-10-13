@@ -1,0 +1,6 @@
+Объектная модель документа https://developer.mozilla.org/ru/docs/Web/API/Document_Object_Model
+Получение элемента https://developer.mozilla.org/ru/docs/Web/API/Document/getElementById
+Прочтите о событиях https://developer.mozilla.org/ru/docs/Learn_web_development/Core/Scripting/Events
+----------------------------------------------------------------
+Получите данные из HTML формы, и отобразите их на странице.
+(Перехватите событие - отправка формы).

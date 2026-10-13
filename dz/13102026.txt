@@ -1,0 +1,21 @@
+Еще раз прочтите основы https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Grammar_and_types#%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B
+Условия if else, и try catch https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
+Циклы и итерации https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Loops_and_iteration
+Выражения и операторы https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Expressions_and_operators
+Функции https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Functions
+---------------------------------------------------------------------------
+Информация для подготовки к зачету
+https://github.com/Kondusov/rpo-24-3-js/tree/main/exam
+---------------------------------------------------------------------------
+Репозиторий с прогрессом нашей работы
+https://github.com/Kondusov/rpo-24-3-js
+---------------------------------------------------------------------------
+
+Напишите функцию, которая узнает системное время.
+функция принимает имя пользователя(метод prompt) и возраст.
+И в зависимости от текущего часа, приветствует нас сообщением
+(доброе утро, добрый день, добрый вечер) + имя_пользователя.
++ В зависимости от возраста, поздравляет или говорит что не прошли
+по возрасту (если меньше 18 лет) - говорит через сколько лет можно попробовать снова.
+Проверяйте входящие данные, они должны быть корректными (например имя - не менее двух символов,
+возраст - не отрицательное число.) 
