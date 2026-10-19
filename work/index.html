@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        article{
+            background-color: aqua;
+            width: 50%;
+            height: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
+
 <body>
+    <form action="">
+        <input type="text" id="user_name">
+        <input type="number" id="user_age">
+        <input type="submit">
+    </form>
+    <article id="result"></article>
+    <button>ЖМИ</button>
+    <button onclick="console.log('цвет')" >меняй цвет</button>
+    <button onclick="changeColor()" >меняй цвет</button>
+    <button id="btnChangeColor">жми цвет</button>
     <!-- <script src="type-data.js"></script> -->
-    <script src="if-else.js"></script>
+    <!-- <script src="if-else.js"></script> -->
+    <!-- <script src="data-form.js"></script> -->
+    <script src="event.js"></script>
 </body>
 </html>
