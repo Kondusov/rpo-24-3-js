@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор случайных чисел</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 320px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* чтобы padding не ломал ширину */
+        }
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            min-height: 1.5em;
+        }
+        #history {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+            text-align: center;
+        }
+        .error {
+            color: #d9534f;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Генератор чисел</h2>
+        <form id="randomForm">
+            <div class="form-group">
+                <label for="min">Минимум:</label>
+                <input type="number" id="min" value="1" min="0">
+            </div>
+            <div class="form-group">
+                <label for="max">Максимум:</label>
+                <input type="number" id="max" value="100" min="1">
+            </div>
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="noRepeat" checked>
+                <label for="noRepeat" style="margin-bottom:0; font-weight:normal;">Не повторять выпавшие</label>
+            </div>
+            <button type="submit">Сгенерировать</button>
+        </form>
+        <div id="result"></div>
+        <div id="history"></div>
+        <div id="error" class="error"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('randomForm');
+        const minInput = document.getElementById('min');
+        const maxInput = document.getElementById('max');
+        const noRepeatCheckbox = document.getElementById('noRepeat');
+        const resultDiv = document.getElementById('result');
+        const historyDiv = document.getElementById('history');
+        const errorDiv = document.getElementById('error');
+
+        // Хранилище для истории чисел (в пределах одной сессии)
+        let historyNumbers = [];
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            errorDiv.textContent = '';
+            
+            const min = parseInt(minInput.value, 10);
+            const max = parseInt(maxInput.value, 10);
+
+            // Валидация
+            if (isNaN(min) || isNaN(max) || min > max) {
+                errorDiv.textContent = 'Пожалуйста, укажите корректный диапазон (минимум ≤ максимум).';
+                return;
+            }
+
+            let randomNumber;
+            const isNoRepeatEnabled = noRepeatCheckbox.checked;
+
+            if (isNoRepeatEnabled) {
+                // Если диапазон исчерпан
+                const rangeSize = max - min + 1;
+                if (historyNumbers.length >= rangeSize) {
+                    errorDiv.textContent = 'Все числа в этом диапазоне уже выпали!';
+                    resultDiv.textContent = '';
+                    return;
+                }
+
+                // Генерируем число, пока не найдем то, которого еще не было
+                do {
+                    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                } while (historyNumbers.includes(randomNumber));
+
+                historyNumbers.push(randomNumber);
+            } else {
+                // Обычная генерация без проверки на повторы
+                randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                // Очищаем историю, если чекбокс сняли, чтобы не мешал
+                historyNumbers = []; 
+            }
+
+            resultDiv.textContent = `Выпало: ${randomNumber}`;
+            historyDiv.textContent = `История: ${historyNumbers.join(', ') || 'пусто'}`;
+        });
+    </script>
+</body>
+</html>
