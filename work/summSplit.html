@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input id="inputStr" type="text" placeholder="Введите строку">
+        <input type="submit">
+        <p></p>
+    </form>
+
+
+    <script>
+        let user_form = document.querySelector('form');
+        let result = 0;
+        let arrJoin = [];
+        let resultJoin = "";
+        function func(event) {
+            event.preventDefault();
+            let str = document.getElementById('inputStr').value;
+            let paragraf = document.querySelector('p');
+            
+            if(str != 0) {
+                let strArr = str.split(",");
+
+                for(let i = 0; i < strArr.length; i++) {
+                    if(strArr[i] % 2 == 0) {
+                        result += Number(strArr[i]);
+                        arrJoin.push(strArr[i]);
+                    }
+                }
+                resultJoin = arrJoin.join("");
+                console.log(strArr);
+                paragraf.textContent = `Сумма чисел: ${resultJoin}, Равна: ${result}`;
+                
+                
+            }
+        }
+        user_form.addEventListener('submit', func);
+        </script>
+</body>
+</html>
